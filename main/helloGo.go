@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 import "unsafe"
 
 // 全局变量声明
@@ -84,4 +87,35 @@ func main() {
 		">>??~~!!!"
 	fmt.Println(stringC)
 
+	//变量数据转换 基本数据类型的互相转换不能自动转换 必须显示转换
+	var i32 int = 100
+	var f64 float64 = float64(i32)
+	fmt.Printf("f64=%v \n", f64)
+
+	//数据类型转换string类型
+	//第一种方式
+	var num1 = 99
+	var num2 = 23.456
+	var b = true
+	b = false
+	var h byte = 'h'
+	var str string
+	str = fmt.Sprintf("%d \n", num1)
+	fmt.Printf("str type : %T str = %v \n", str, str)
+	str = fmt.Sprintf("%f \n", num2)
+	fmt.Printf("str type : %T str = %v \n", str, str)
+	str = fmt.Sprintf("%t \n", b)
+	fmt.Printf("str type : %T str = %q \n", str, str)
+	str = fmt.Sprintf("%c \n", h)
+	fmt.Printf("str type : %T str = %q \n", str, str)
+	//第二种方式
+	var num3 = 99
+	var num4 = 23.456
+	str = strconv.FormatInt(int64(num3), 10)
+	fmt.Printf("str type %T str = %q \n\n", str, str)
+	//f代表格式 10表示小数保留10位 64是float64
+	str = strconv.FormatFloat(num4, 'f', 10, 64)
+	str = strconv.FormatBool(b)
+
+	//string类型转为基本数据类型
 }
