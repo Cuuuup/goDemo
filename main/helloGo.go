@@ -110,6 +110,7 @@ func main() {
 	fmt.Printf("str type : %T str = %q \n", str, str)
 	//第二种方式
 	var num3 = 99
+	num3 += 55
 	var num4 = 23.456
 	str = strconv.FormatInt(int64(num3), 10)
 	fmt.Printf("str type %T str = %q \n\n", str, str)
@@ -148,4 +149,7 @@ func main() {
 	fmt.Printf("ptr指针的值=%v\n", *ptr)    //使用*号+变量名 取出指针指向值
 	*ptr = 9                            //*ptr直接拿指针ptr指向的值 进行赋值 相当于给i赋值成了9
 	fmt.Printf("修改后ptr指针的值=%v\n", *ptr) //使用*号+变量名 取出指针指向值
+
+	//值类型 int float bool string [] struct 变量直接存储值 内存通常在栈中分配
+	//引用类型 指针 slice 切片 map 管道 chan interface
 }
