@@ -6,14 +6,14 @@ import (
 )
 import "unsafe"
 
-// 全局变量声明
+// TODO 全局变量声明
 var (
 	n1 = 1
 	n2 = "2"
 )
 
 func main() {
-	//输出文本
+	//TODO 输出文本
 	fmt.Println("Hello, World!")
 	//声明空变量
 	var name, email string
@@ -24,7 +24,7 @@ func main() {
 	//输出全局变量
 	fmt.Println(n1, n2)
 
-	//整数类型 int
+	//TODO 整数类型 int
 	var _int int     //最大
 	var _int8 int8   //范围 -128~127
 	var _int16 int16 //大一些 正常计算够用 后面类推
@@ -40,13 +40,13 @@ func main() {
 	//打印变量占用字节数 unsafe.Sizeof
 	fmt.Println(unsafe.Sizeof(_int))
 
-	//浮点型 float64
+	//TODO 浮点型 float64
 	var price32 float32 //4字节 范围不一样 精度缺失
 	var price64 float64 //8字节 64精度比32的准确
 	price32, price64 = 1.25, 1.43
 	fmt.Println(price32, price64)
 
-	//字符类型 char go语言统一使用utf-8不会有乱码问题
+	//TODO 字符类型 char go语言统一使用utf-8不会有乱码问题
 	//流程
 	//字符->对应码值->二进制->存储
 	//二进制->对应码值->字符->读取
@@ -63,15 +63,15 @@ func main() {
 	var n1 = 10 + 'a' //10 + 97(a的ascii码是97) = 107
 	fmt.Println(n1)
 
-	//布尔类型 bool 只有 true false 其他替代不允许使用 占用字节1
+	//TODO 布尔类型 bool 只有 true false 其他替代不允许使用 占用字节1
 	var _t = true
 	_t = false
 	var _f = false
 	_f = true
 	fmt.Println(unsafe.Sizeof(_t), unsafe.Sizeof(_f))
 
-	//字符串类型 string  go语言的字符串的字节使用uft8编码表示Unicode文本
-	//TODO go中的字符串是不可以改变的 比如拿address中的 address[0] = '法' 是不被允许的
+	//TODO 字符串类型 string  go语言的字符串的字节使用uft8编码表示Unicode文本
+	//go中的字符串是不可以改变的 比如拿address中的 address[0] = '法' 是不被允许的
 	var address = "中国移动 10086 hello !"
 	fmt.Println(address)
 	email = "邮箱:731005184@qq.com"
@@ -87,12 +87,12 @@ func main() {
 		">>??~~!!!"
 	fmt.Println(stringC)
 
-	//变量数据转换 基本数据类型的互相转换不能自动转换 必须显示转换
+	//TODO 变量数据转换 基本数据类型的互相转换不能自动转换 必须显示转换
 	var i32 int = 100
 	var f64 float64 = float64(i32)
 	fmt.Printf("f64=%v \n", f64)
 
-	//数据类型转换string类型
+	//TODO 数据类型转换string类型
 	//第一种方式
 	var num1 = 99
 	var num2 = 23.456
@@ -117,7 +117,7 @@ func main() {
 	str = strconv.FormatFloat(num4, 'f', 10, 64)
 	str = strconv.FormatBool(b)
 
-	//string类型转为基本数据类型 数据必须是有效转换 不然会出问题
+	//TODO string类型转为基本数据类型 数据必须是有效转换 不然会出问题
 	var num5 = 4567
 	str = strconv.Itoa(num5) //数字转字符串 但是变量本身还是数字类型
 	fmt.Printf("str type %T value= %v \n", str, str)
@@ -133,4 +133,19 @@ func main() {
 	var ff float64
 	ff, _ = strconv.ParseFloat(f1, 64)
 	fmt.Printf("ff type %T value = %v \n", ff, ff)
+
+	//TODO 指针 指针变量指向的是变量的一个地址 地址指向的空间值才是值
+	var i = 10
+	fmt.Println("i的地址是:", &i) //变量地址使用&符+变量名 变量在内存的地址
+	//var ptr *int = &i
+	//ptr 是变量
+	//ptr 的类型是 *int
+	//ptr 本身的值是 &i
+	//指针也有类型 必须同类型才能赋值
+	//所有的值类型 都有对应的指针类型 指针用&表示 指针值用*表示
+	var ptr = &i //变量ptr要存储变量指针 所以变量ptr本身也有一个指针 如果在找个变量存ptr的指针可无线套娃
+	fmt.Printf("ptr=%v\n", ptr)
+	fmt.Printf("ptr指针的值=%v\n", *ptr)    //使用*号+变量名 取出指针指向值
+	*ptr = 9                            //*ptr直接拿指针ptr指向的值 进行赋值 相当于给i赋值成了9
+	fmt.Printf("修改后ptr指针的值=%v\n", *ptr) //使用*号+变量名 取出指针指向值
 }
