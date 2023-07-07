@@ -117,5 +117,20 @@ func main() {
 	str = strconv.FormatFloat(num4, 'f', 10, 64)
 	str = strconv.FormatBool(b)
 
-	//string类型转为基本数据类型
+	//string类型转为基本数据类型 数据必须是有效转换 不然会出问题
+	var num5 = 4567
+	str = strconv.Itoa(num5) //数字转字符串 但是变量本身还是数字类型
+	fmt.Printf("str type %T value= %v \n", str, str)
+	var stringBool1 = "true"
+	var bs bool
+	bs, _ = strconv.ParseBool(stringBool1)
+	fmt.Printf("bs type %T value = %v \n", bs, bs)
+	var stringInt1 = "123"
+	var ints int64
+	ints, _ = strconv.ParseInt(stringInt1, 10, 64)
+	fmt.Printf("ints type %T value = %v \n", ints, ints)
+	var f1 = "123.444"
+	var ff float64
+	ff, _ = strconv.ParseFloat(f1, 64)
+	fmt.Printf("ff type %T value = %v \n", ff, ff)
 }
